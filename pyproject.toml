@@ -1,0 +1,14 @@
+[project]
+name = "persian-synthetic-data"
+version = "0.1.0"
+description = "Persian Synthetic Data Generation"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyter>=1.1.1",
+    "promptwright",
+    "python-dotenv>=1.0.1",
+]
+
+[tool.uv.sources]
+promptwright = { git = "https://github.com/ParsBench/persian-promptwright.git" }
