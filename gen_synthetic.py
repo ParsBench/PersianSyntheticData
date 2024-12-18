@@ -6,13 +6,21 @@ load_dotenv()
 
 from promptwright import DataEngine, EngineArguments, TopicTree, TopicTreeArguments
 
-def generate_dataset(topic, system_prompt, instructions):
+def generate_dataset(
+    topic,
+    system_prompt,
+    instructions,
+    tree_degree=7,
+    tree_depth=4,
+    num_steps=10,
+    batch_size=1,
+):
     tree = TopicTree(
         args=TopicTreeArguments(
             root_prompt=topic,
             model_system_prompt=system_prompt,
-            tree_degree=7,
-            tree_depth=4,
+            tree_degree=tree_degree,
+            tree_depth=tree_depth,
             temperature=0.7,
             model_name="openai/gpt-4o",
         )
@@ -32,8 +40,8 @@ def generate_dataset(topic, system_prompt, instructions):
     )
 
     dataset = engine.create_data(
-        num_steps=200,
-        batch_size=10,
+        num_steps=num_steps,
+        batch_size=batch_size,
         topic_tree=tree,
         sys_msg=False,
     )
